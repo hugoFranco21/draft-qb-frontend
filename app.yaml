@@ -8,8 +8,8 @@ handlers:
     upload: dist/angular-on-gcp/(.*)(|\.map)
 
   - url: /(.*)
-    static_files: dist/angular-on-gcp/index.html
-    upload: dist/angular-on-gcp/index.html
+    static_files: dist/index.html
+    upload: dist/index.html
 
 skip_files:
   - e2e/

@@ -41,6 +41,11 @@ yarn-error.log
 testem.log
 /typings
 
+yarn.lock
+
 # System Files
 .DS_Store
 Thumbs.db
+
+frontend-qb-d13247ab29ac.json
+file
