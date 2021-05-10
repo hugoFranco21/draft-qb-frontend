@@ -51,6 +51,6 @@ deploy:
   script:
     - echo $KEY_FILE | base64 -d > /tmp/gae_auth.json
     - gcloud auth activate-service-account --key-file /tmp/gae_auth.json
-    - gloud app deploy app.yaml --project=$PROJECT
+    - gcloud app deploy app.yaml --project=$PROJECT
   after_script:
     - rm /tmp/gae_auth.json
