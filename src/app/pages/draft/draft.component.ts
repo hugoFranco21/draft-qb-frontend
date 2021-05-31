@@ -20,6 +20,7 @@ export class DraftComponent implements OnInit {
   public age!: number;
   public prediction!: string;
   public predictionErrors: string | undefined = undefined;
+  public error:boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -97,9 +98,11 @@ export class DraftComponent implements OnInit {
         if(response?.data?.success === true){
           this.prediction = response.data.prediction;
           this.predictionErrors = undefined;
+          this.error = false;
         } else {
           this.prediction = '';
-          this.predictionErrors = "The input data could not produce a prediction, please check the input"
+          this.error = true;
+          this.predictionErrors = "The input data could not produce a prediction, please check the input."
         }
       })
     }

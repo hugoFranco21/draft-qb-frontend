@@ -266,10 +266,8 @@
                 [(ngModel)]="prediction"
                 disabled
             />
-            <div class="invalid-feedback">
-                <div *ngIf="this.predictionErrors !== undefined">
-                    <p class="text-danger">{{ predictionErrors}}</p>
-                </div>
+            <div *ngIf="error !== false">
+                <p class="text-danger">{{ predictionErrors }}</p>
             </div>
         </div>
     </div>

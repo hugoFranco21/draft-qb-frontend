@@ -17,6 +17,7 @@ export class RookieComponent implements OnInit {
   public efficiency!: number;
   public prediction!: number;
   public predictionErrors: string | undefined = undefined;
+  public error: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -75,9 +76,11 @@ export class RookieComponent implements OnInit {
           const prev = response.data.prediction.toFixed(2);
           this.prediction = prev;
           this.predictionErrors = undefined;
+          this.error = false;
         } else {
           this.prediction = 0;
-          this.predictionErrors = "The input data could not produce a prediction, please check the input"
+          this.error = true;
+          this.predictionErrors = "The input data could not produce a prediction, please check the input."
         }
       })
     }
