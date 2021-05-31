@@ -71,7 +71,7 @@ export class DraftComponent implements OnInit {
       ]),
       age: new FormControl(this.age, [
         Validators.required,
-        Validators.min(0),
+        Validators.min(19),
         Validators.max(50),
       ]),
     })
