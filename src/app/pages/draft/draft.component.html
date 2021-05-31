@@ -1,0 +1,352 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>
+                Should you draft a Quarterback?
+            </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <p>
+                There are many situations in which is becomes clear that a change needs to be made
+                at the quarterback position. Maybe the incumbent is underperforming, there is an 
+                exciting prospect entering the draft, the current Qb contract is expiring, etc.
+                However, many times it is not clear, and teams hold on to their current QB's for far 
+                too long, and they miss out on prospects, or their team gets too expensive (the 
+                sport has a salary cap). This algorithm will not tell you if your decision is correct, it will
+                tell you what other teams in a similar situation have done.
+            </p>
+            <p>
+                To check the stats of you favorite players, visit <a href="https://www.pro-football-reference.com/">Pro Football Reference</a>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <p>
+                Every field and its importance will be explained within the form.
+            </p>
+        </div>
+    </div>
+    <form
+        [formGroup]="draftForm"
+        class="needs-validation"
+        novalidate=""
+    >
+        <div class="row">
+            <div class="col-12">
+                <h2>Stats</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 form-group">
+                <label class="form-control-label" for="wins">How many games did the team win?*</label>
+                <input
+                    class="form-control"
+                    id="wins"
+                    type="number"
+                    formControlName="wins"
+                    placeholder="8"
+                    min="0"
+                    max="16"
+                    ngModel
+                    [ngClass]="{
+                        'is-invalid':
+                            draftForm.controls.wins.invalid &&
+                            (draftForm.controls.wins.dirty ||
+                            draftForm.controls.wins.touched)
+                    }"
+                />
+                <div class="invalid-feedback">
+                    <div *ngIf="draftForm.controls.wins.hasError('required')">
+                        <p id="requiredNameFeedback">This value is required.</p>
+                    </div>
+                    <div *ngIf="draftForm.controls.wins.hasError('min')">
+                        <p id="patternNameFeedback">Lowest value is 0.</p>
+                    </div>
+                    <div *ngIf="draftForm.controls.wins.hasError('max')">
+                        <p id="patternNameFeedback">Highest possible value is 16</p>
+                    </div>
+                </div>
+                <p>
+                    Wins are the ultimate metric in team success, even with the chaos that happens week 
+                    after week in the league, the better teams will separate from the rest in the win column.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 form-group">
+                <label class="form-control-label" for="completion">Quarterback completion percentage*</label>
+                <input
+                    class="form-control"
+                    id="completion"
+                    type="number"
+                    formControlName="completion"
+                    placeholder="60"
+                    min="0"
+                    max="100"
+                    ngModel
+                    [ngClass]="{
+                        'is-invalid':
+                            draftForm.controls.completion.invalid &&
+                            (draftForm.controls.completion.dirty ||
+                            draftForm.controls.completion.touched)
+                    }"
+                />
+                <div class="invalid-feedback">
+                    <div *ngIf="draftForm.controls.completion.hasError('required')">
+                        <p id="requiredNameFeedback">This value is required</p>
+                    </div>
+                    <div *ngIf="draftForm.controls.completion.hasError('min')">
+                        <p id="patternNameFeedback">Lowest possible number is 0.</p>
+                    </div>
+                    <div *ngIf="draftForm.controls.completion.hasError('max')">
+                        <p id="patternNameFeedback">Highest possible value is 100.</p>
+                    </div>
+                </div>
+                <p>
+                    The completion percentage tells you how accurate a quarterback is.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 form-group">
+                <label class="form-control-label" for="yards">Total aerial yards*</label>
+                <input
+                    class="form-control"
+                    id="yards"
+                    type="number"
+                    formControlName="yards"
+                    placeholder="4000"
+                    min="0"
+                    max="10000"
+                    ngModel
+                    [ngClass]="{
+                        'is-invalid':
+                            draftForm.controls.yards.invalid &&
+                            (draftForm.controls.yards.dirty ||
+                            draftForm.controls.yards.touched)
+                    }"
+                />
+                <div class="invalid-feedback">
+                    <div *ngIf="draftForm.controls.yards.hasError('required')">
+                        <p id="requiredNameFeedback">This value is required</p>
+                    </div>
+                    <div *ngIf="draftForm.controls.yards.hasError('min')">
+                        <p id="patternNameFeedback">Lowest possible value is 0</p>
+                    </div>
+                    <div *ngIf="draftForm.controls.yards.hasError('max')">
+                        <p id="patternNameFeedback">Highest possible value is 10000.</p>
+                    </div>
+                </div>
+                <p>
+                    The aerial yard metric tells you how prolific a quarterback is. It can be skewed towards
+                    quarterbacks in bad teams because they are passing more often than those in 
+                    good teams which usually run the clock out in the final quarter.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 form-group">
+                <label class="form-control-label" for="tds">Aerial Touch Downs*</label>
+                <input
+                    class="form-control"
+                    id="tds"
+                    type="number"
+                    formControlName="tds"
+                    placeholder="20"
+                    min="0"
+                    max="100"
+                    ngModel
+                    [ngClass]="{
+                        'is-invalid':
+                            draftForm.controls.tds.invalid &&
+                            (draftForm.controls.tds.dirty ||
+                            draftForm.controls.tds.touched)
+                    }"
+                />
+                <div class="invalid-feedback">
+                    <div *ngIf="draftForm.controls.tds.hasError('required')">
+                        <p id="requiredNameFeedback">This value is required.</p>
+                    </div>
+                    <div *ngIf="draftForm.controls.tds.hasError('min')">
+                        <p id="patternNameFeedback">Lowest possible value is 0.</p>
+                    </div>
+                    <div *ngIf="draftForm.controls.tds.hasError('max')">
+                        <p id="patternNameFeedback">Highest possible value is 100.</p>
+                    </div>
+                </div>
+                <p>
+                    The number of touchdowns is a good metric to measure offensive success.
+                    Good offenses score more points.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 form-group">
+                <label class="form-control-label" for="ints">Interceptions*</label>
+                <input
+                    class="form-control"
+                    id="ints"
+                    type="number"
+                    formControlName="ints"
+                    placeholder="10"
+                    min="0"
+                    max="100"
+                    ngModel
+                    [ngClass]="{
+                        'is-invalid':
+                            draftForm.controls.ints.invalid &&
+                            (draftForm.controls.ints.dirty ||
+                            draftForm.controls.ints.touched)
+                    }"
+                />
+                <div class="invalid-feedback">
+                    <div *ngIf="draftForm.controls.ints.hasError('required')">
+                        <p id="requiredNameFeedback">This value is required.</p>
+                    </div>
+                    <div *ngIf="draftForm.controls.ints.hasError('min')">
+                        <p id="patternNameFeedback">Lowest possible value is 0</p>
+                    </div>
+                    <div *ngIf="draftForm.controls.ints.hasError('max')">
+                        <p id="patternNameFeedback">Highest possible value is 100.</p>
+                    </div>
+                </div>
+                <p>
+                    Even if some aren't their fault, interceptions are bad. They say a lot about reckless
+                    play from the quarterback.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 form-group">
+                <label class="form-control-label" for="rating">Quarterback rating*</label>
+                <input
+                    class="form-control"
+                    id="rating"
+                    type="number"
+                    formControlName="rating"
+                    placeholder="80"
+                    min="0"
+                    max="158.3"
+                    ngModel
+                    [ngClass]="{
+                        'is-invalid':
+                            draftForm.controls.rating.invalid &&
+                            (draftForm.controls.rating.dirty ||
+                            draftForm.controls.rating.touched)
+                    }"
+                />
+                <div class="invalid-feedback">
+                    <div *ngIf="draftForm.controls.rating.hasError('required')">
+                        <p id="requiredNameFeedback">This value is required.</p>
+                    </div>
+                    <div *ngIf="draftForm.controls.rating.hasError('min')">
+                        <p id="patternNameFeedback">Lowest possible value is 0</p>
+                    </div>
+                    <div *ngIf="draftForm.controls.rating.hasError('max')">
+                        <p id="patternNameFeedback">Highest possible value is 158.3</p>
+                    </div>
+                </div>
+                <p>
+                    This metric tells us how good the quarterback played.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 form-group">
+                <label class="form-control-label" for="years">Years remaining in contract*</label>
+                <input
+                    class="form-control"
+                    id="years"
+                    type="number"
+                    formControlName="years"
+                    placeholder="3"
+                    min="0"
+                    max="15"
+                    ngModel
+                    [ngClass]="{
+                        'is-invalid':
+                            draftForm.controls.years.invalid &&
+                            (draftForm.controls.years.dirty ||
+                            draftForm.controls.years.touched)
+                    }"
+                />
+                <div class="invalid-feedback">
+                    <div *ngIf="draftForm.controls.years.hasError('required')">
+                        <p id="requiredNameFeedback">This value is required.</p>
+                    </div>
+                    <div *ngIf="draftForm.controls.years.hasError('min')">
+                        <p id="patternNameFeedback">Lowest possible value is 0</p>
+                    </div>
+                    <div *ngIf="draftForm.controls.years.hasError('max')">
+                        <p id="patternNameFeedback">Highest possible value is 15</p>
+                    </div>
+                </div>
+                <p>
+                    This number is very important. When a quarterback is close to the end of their contract
+                    and their team is not completely sold on their performance, they almost always 
+                    look to the draft for either their eventual replacement, or a solid backup.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 form-group">
+                <label class="form-control-label" for="age">Quarterback age at the end of the season*</label>
+                <input
+                    class="form-control"
+                    id="age"
+                    type="number"
+                    formControlName="age"
+                    placeholder="30"
+                    min="19"
+                    max="50"
+                    ngModel
+                    [ngClass]="{
+                        'is-invalid':
+                            draftForm.controls.age.invalid &&
+                            (draftForm.controls.age.dirty ||
+                            draftForm.controls.age.touched)
+                    }"
+                />
+                <div class="invalid-feedback">
+                    <div *ngIf="draftForm.controls.age.hasError('required')">
+                        <p id="requiredNameFeedback">This value is required.</p>
+                    </div>
+                    <div *ngIf="draftForm.controls.age.hasError('min')">
+                        <p id="patternNameFeedback">Lowest possible value is 19</p>
+                    </div>
+                    <div *ngIf="draftForm.controls.age.hasError('max')">
+                        <p id="patternNameFeedback">Highest possible value is 50</p>
+                    </div>
+                </div>
+                <p>
+                    It is important to know how old the quarterback is because there normally is 
+                    a considerable drop in performance the older they get.
+                </p>
+            </div>
+        </div>
+        <button type="button" (click)="sendFormData()">Get prediction</button>
+    </form>
+    <div class="row">
+        <div class="col-12">
+            <label class="form-control-label" for="prediction">Should you draft a Quarterback?</label>
+            <input
+                class="form-control bg-light"
+                id="prediction"
+                type="text"
+                ngModel
+                disabled
+            />
+            <div class="invalid-feedback">
+                <div *ngIf="this.predictionErrors">
+                    <p id="requiredNameFeedback">{{ this.predictionErrors }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>
+

@@ -1,0 +1,232 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>
+                Rookie Quarterback Rating Predictor
+            </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <p>
+                Quarterback is the most important position in the NFL, perhaps in all sports.
+                FIll this form, and predict how a rookie QB will fare in his first year at the League.
+            </p>
+            <p>
+                To check the stats of you favorite players, visit <a href="https://www.pro-football-reference.com/">Pro Football Reference</a>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <p>
+                Every field and its importance will be explained within the form.
+            </p>
+        </div>
+    </div>
+    <form
+        [formGroup]="rookieForm"
+        class="needs-validation"
+        novalidate=""
+    >
+        <div class="row">
+            <div class="col-12">
+                <h2>Stats</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 form-group">
+                <label class="form-control-label" for="draft">Round drafted*</label>
+                <input
+                    class="form-control"
+                    id="draft"
+                    type="number"
+                    formControlName="draft"
+                    placeholder="1"
+                    min="1"
+                    max="7"
+                    ngModel
+                    [ngClass]="{
+                        'is-invalid':
+                            rookieForm.controls.draft.invalid &&
+                            (rookieForm.controls.draft.dirty ||
+                            rookieForm.controls.draft.touched)
+                    }"
+                />
+                <div class="invalid-feedback">
+                    <div *ngIf="rookieForm.controls.draft.hasError('required')">
+                        <p id="requiredNameFeedback">This value is required.</p>
+                    </div>
+                    <div *ngIf="rookieForm.controls.draft.hasError('min')">
+                        <p id="patternNameFeedback">Lowest round is 1.</p>
+                    </div>
+                    <div *ngIf="rookieForm.controls.draft.hasError('max')">
+                        <p id="patternNameFeedback">Highest round is 7.</p>
+                    </div>
+                </div>
+                <p>
+                    The NFL draft is composed of 7 rounds where teams choose the next generation of pro's. The lower the round
+                    the higher regarded prospect you are. First round rookies (especially QB's) are expected to contribute
+                    right away
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 form-group">
+                <label class="form-control-label" for="sack">Sack Percentage*</label>
+                <input
+                    class="form-control"
+                    id="sack"
+                    type="number"
+                    formControlName="sack"
+                    placeholder="1"
+                    min="0"
+                    max="100"
+                    ngModel
+                    [ngClass]="{
+                        'is-invalid':
+                            rookieForm.controls.sack.invalid &&
+                            (rookieForm.controls.sack.dirty ||
+                            rookieForm.controls.sack.touched)
+                    }"
+                />
+                <div class="invalid-feedback">
+                    <div *ngIf="rookieForm.controls.sack.hasError('required')">
+                        <p id="requiredNameFeedback">This value is required</p>
+                    </div>
+                    <div *ngIf="rookieForm.controls.sack.hasError('min')">
+                        <p id="patternNameFeedback">Lowest possible sack rate is 0.</p>
+                    </div>
+                    <div *ngIf="rookieForm.controls.sack.hasError('max')">
+                        <p id="patternNameFeedback">Highest possible sack rate is 100.</p>
+                    </div>
+                </div>
+                <p>
+                    The sack rate is a stat that measures the percentage of plays a quarterback was sacked in pass plays. 
+                    This number is a good indicator for how good the offensive line is performing.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 form-group">
+                <label class="form-control-label" for="completion">Completion percentage in college*</label>
+                <input
+                    class="form-control"
+                    id="completion"
+                    type="number"
+                    formControlName="completion"
+                    placeholder="67"
+                    min="0"
+                    max="100"
+                    ngModel
+                    [ngClass]="{
+                        'is-invalid':
+                            rookieForm.controls.completion.invalid &&
+                            (rookieForm.controls.completion.dirty ||
+                            rookieForm.controls.completion.touched)
+                    }"
+                />
+                <div class="invalid-feedback">
+                    <div *ngIf="rookieForm.controls.completion.hasError('required')">
+                        <p id="requiredNameFeedback">This value is required</p>
+                    </div>
+                    <div *ngIf="rookieForm.controls.completion.hasError('min')">
+                        <p id="patternNameFeedback">Lowest possible completion rate is 0.</p>
+                    </div>
+                    <div *ngIf="rookieForm.controls.completion.hasError('max')">
+                        <p id="patternNameFeedback">Highest possible completion rate is 100.</p>
+                    </div>
+                </div>
+                <p>
+                    The completion rate is the number of passes completed by the quarterback, divided by his number of attempts.
+                    This number is a good indicator of how accurate a quarterback is.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 form-group">
+                <label class="form-control-label" for="yards">Yards per attempt in college*</label>
+                <input
+                    class="form-control"
+                    id="yards"
+                    type="number"
+                    formControlName="yards"
+                    placeholder="8"
+                    min="0"
+                    ngModel
+                    [ngClass]="{
+                        'is-invalid':
+                            rookieForm.controls.yards.invalid &&
+                            (rookieForm.controls.yards.dirty ||
+                            rookieForm.controls.yards.touched)
+                    }"
+                />
+                <div class="invalid-feedback">
+                    <div *ngIf="rookieForm.controls.yards.hasError('required')">
+                        <p id="requiredNameFeedback">This value is required.</p>
+                    </div>
+                    <div *ngIf="rookieForm.controls.yards.hasError('min')">
+                        <p id="patternNameFeedback">Lowest possible value is 0</p>
+                    </div>
+                </div>
+                <p>
+                    The yard per attempt metric is a measure of quarterback efficiency, and shows 
+                    how he manages the offense when throwing the ball.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 form-group">
+                <label class="form-control-label" for="efficiency">College efficienct rating*</label>
+                <input
+                    class="form-control"
+                    id="efficiency"
+                    type="number"
+                    formControlName="efficiency"
+                    placeholder="150"
+                    min="0"
+                    ngModel
+                    [ngClass]="{
+                        'is-invalid':
+                            rookieForm.controls.efficiency.invalid &&
+                            (rookieForm.controls.efficiency.dirty ||
+                            rookieForm.controls.efficiency.touched)
+                    }"
+                />
+                <div class="invalid-feedback">
+                    <div *ngIf="rookieForm.controls.efficiency.hasError('required')">
+                        <p id="requiredNameFeedback">This value is required.</p>
+                    </div>
+                    <div *ngIf="rookieForm.controls.efficiency.hasError('min')">
+                        <p id="patternNameFeedback">Lowest possible value is 0.</p>
+                    </div>
+                </div>
+                <p>
+                    The efficency rating is calculated using the number of pass attempts, the number of completions, the number of yards,
+                    the number of touchdowns and the number of interceptions. It is the college equivalent to the number we are trying to predict, 
+                    Quarterback rating
+                </p>
+            </div>
+        </div>
+        <button type="button" (click)="sendFormData()">Get prediction</button>
+    </form>
+    <div class="row">
+        <div class="col-12">
+            <label class="form-control-label" for="prediction">Predicted rating</label>
+            <input
+                class="form-control bg-light"
+                id="prediction"
+                type="number"
+                ngModel
+                disabled
+            />
+            <div class="invalid-feedback">
+                <div *ngIf="this.predictionErrors">
+                    <p id="requiredNameFeedback">{{ this.predictionErrors }</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

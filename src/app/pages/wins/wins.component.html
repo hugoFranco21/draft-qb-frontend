@@ -1,0 +1,278 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>
+                Wins In a Season Predictor
+            </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <p>
+                There are many different factors that influence whether a team wins an NFL game. One would think the better team always wins but that is not 
+                always the case. And what makes a team better than another anyway? Input the values and learn how much better your team 
+                could have been with a different quarterback or a better defense.
+            </p>
+            <p>
+                To check the stats of you favorite players, visit <a href="https://www.pro-football-reference.com/">Pro Football Reference</a>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <p>
+                Every field and its importance will be explained within the form.
+            </p>
+        </div>
+    </div>
+    <form
+        [formGroup]="winsForm"
+        class="needs-validation"
+        novalidate=""
+    >
+        <div class="row">
+            <div class="col-12">
+                <h2>Stats</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 form-group">
+                <label class="form-control-label" for="rating">Quarterback rating*</label>
+                <input
+                    class="form-control"
+                    id="rating"
+                    type="number"
+                    formControlName="rating"
+                    placeholder="80"
+                    min="0"
+                    max="158.3"
+                    ngModel
+                    [ngClass]="{
+                        'is-invalid':
+                            winsForm.controls.rating.invalid &&
+                            (winsForm.controls.rating.dirty ||
+                            winsForm.controls.rating.touched)
+                    }"
+                />
+                <div class="invalid-feedback">
+                    <div *ngIf="winsForm.controls.rating.hasError('required')">
+                        <p id="requiredNameFeedback">This value is required.</p>
+                    </div>
+                    <div *ngIf="winsForm.controls.rating.hasError('min')">
+                        <p id="patternNameFeedback">Lowest value is 0.</p>
+                    </div>
+                    <div *ngIf="winsForm.controls.rating.hasError('max')">
+                        <p id="patternNameFeedback">Highest possible value is 158.3</p>
+                    </div>
+                </div>
+                <p>
+                    Quarterback rating is a reasonably good metric to evaluate the performance 
+                    of a quarterback. It is calculated using his individual stats, like touchdowns,
+                    yards and interceptions.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 form-group">
+                <label class="form-control-label" for="offplay">Number of offensive plays*</label>
+                <input
+                    class="form-control"
+                    id="offplay"
+                    type="number"
+                    formControlName="offplay"
+                    placeholder="1000"
+                    min="0"
+                    max="3000"
+                    ngModel
+                    [ngClass]="{
+                        'is-invalid':
+                            winsForm.controls.offplay.invalid &&
+                            (winsForm.controls.offplay.dirty ||
+                            winsForm.controls.offplay.touched)
+                    }"
+                />
+                <div class="invalid-feedback">
+                    <div *ngIf="winsForm.controls.offplay.hasError('required')">
+                        <p id="requiredNameFeedback">This value is required</p>
+                    </div>
+                    <div *ngIf="winsForm.controls.offplay.hasError('min')">
+                        <p id="patternNameFeedback">Lowest possible number is 0.</p>
+                    </div>
+                    <div *ngIf="winsForm.controls.offplay.hasError('max')">
+                        <p id="patternNameFeedback">Highest possible value is 3000.</p>
+                    </div>
+                </div>
+                <p>
+                    The number of plays is important because it can tell you if an offense was able 
+                    to stay on the field and establish a rythm.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 form-group">
+                <label class="form-control-label" for="yards">Offensive yards per play*</label>
+                <input
+                    class="form-control"
+                    id="yards"
+                    type="number"
+                    formControlName="yards"
+                    placeholder="5.5"
+                    min="0"
+                    max="100"
+                    ngModel
+                    [ngClass]="{
+                        'is-invalid':
+                            winsForm.controls.yards.invalid &&
+                            (winsForm.controls.yards.dirty ||
+                            winsForm.controls.yards.touched)
+                    }"
+                />
+                <div class="invalid-feedback">
+                    <div *ngIf="winsForm.controls.yards.hasError('required')">
+                        <p id="requiredNameFeedback">This value is required</p>
+                    </div>
+                    <div *ngIf="winsForm.controls.yards.hasError('min')">
+                        <p id="patternNameFeedback">Lowest possible value is 0.0</p>
+                    </div>
+                    <div *ngIf="winsForm.controls.yards.hasError('max')">
+                        <p id="patternNameFeedback">Highest possible value is 100.</p>
+                    </div>
+                </div>
+                <p>
+                    The yard per play metric is a good metric for offensive prowess. A higher number indicates the team was 
+                    routinely able to march down the field.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 form-group">
+                <label class="form-control-label" for="defplay">Number of deffensive plays*</label>
+                <input
+                    class="form-control"
+                    id="defplay"
+                    type="number"
+                    formControlName="defplay"
+                    placeholder="1000"
+                    min="0"
+                    max="3000"
+                    ngModel
+                    [ngClass]="{
+                        'is-invalid':
+                            winsForm.controls.defplay.invalid &&
+                            (winsForm.controls.defplay.dirty ||
+                            winsForm.controls.defplay.touched)
+                    }"
+                />
+                <div class="invalid-feedback">
+                    <div *ngIf="winsForm.controls.defplay.hasError('required')">
+                        <p id="requiredNameFeedback">This value is required.</p>
+                    </div>
+                    <div *ngIf="winsForm.controls.defplay.hasError('min')">
+                        <p id="patternNameFeedback">Lowest possible value is 0.</p>
+                    </div>
+                    <div *ngIf="winsForm.controls.defplay.hasError('max')">
+                        <p id="patternNameFeedback">Highest possible value is 3000.</p>
+                    </div>
+                </div>
+                <p>
+                    The number of defensive plays is helpful in this context because it is known that a team that cannot 
+                    force a turnover on downs or a punt consistenly, has to keep wolling out the defense, which makes them tired,
+                    which makes them perform worse.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 form-group">
+                <label class="form-control-label" for="defyard">Defensive yards per play*</label>
+                <input
+                    class="form-control"
+                    id="defyard"
+                    type="number"
+                    formControlName="defyard"
+                    placeholder="5"
+                    min="0"
+                    max="100"
+                    ngModel
+                    [ngClass]="{
+                        'is-invalid':
+                            winsForm.controls.defyard.invalid &&
+                            (winsForm.controls.defyard.dirty ||
+                            winsForm.controls.defyard.touched)
+                    }"
+                />
+                <div class="invalid-feedback">
+                    <div *ngIf="winsForm.controls.defyard.hasError('required')">
+                        <p id="requiredNameFeedback">This value is required.</p>
+                    </div>
+                    <div *ngIf="winsForm.controls.defyard.hasError('min')">
+                        <p id="patternNameFeedback">Lowest possible value is 0</p>
+                    </div>
+                    <div *ngIf="winsForm.controls.defyard.hasError('max')">
+                        <p id="patternNameFeedback">Highest possible value is 100.</p>
+                    </div>
+                </div>
+                <p>
+                    This metric tells us if a defense can limit the other team or not, higher values 
+                    indicate a defense is not good enough to make stops.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 form-group">
+                <label class="form-control-label" for="turnover">Non QB Turnovers*</label>
+                <input
+                    class="form-control"
+                    id="turnover"
+                    type="number"
+                    formControlName="turnover"
+                    placeholder="20"
+                    min="0"
+                    max="100"
+                    ngModel
+                    [ngClass]="{
+                        'is-invalid':
+                            winsForm.controls.turnover.invalid &&
+                            (winsForm.controls.turnover.dirty ||
+                            winsForm.controls.turnover.touched)
+                    }"
+                />
+                <div class="invalid-feedback">
+                    <div *ngIf="winsForm.controls.turnover.hasError('required')">
+                        <p id="requiredNameFeedback">This value is required.</p>
+                    </div>
+                    <div *ngIf="winsForm.controls.turnover.hasError('min')">
+                        <p id="patternNameFeedback">Lowest possible value is 0</p>
+                    </div>
+                    <div *ngIf="winsForm.controls.turnover.hasError('max')">
+                        <p id="patternNameFeedback">Highest possible value is 100.</p>
+                    </div>
+                </div>
+                <p>
+                    This metric tells us how reliable was the offense aside from the QB. This is 
+                    important because we are already evaluating his performance with the QB Rating metric.
+                </p>
+            </div>
+        </div>
+        <button type="button" (click)="sendFormData()">Get prediction</button>
+    </form>
+    <div class="row">
+        <div class="col-12">
+            <label class="form-control-label" for="prediction">Predicted wins</label>
+            <input
+                class="form-control bg-light"
+                id="prediction"
+                type="number"
+                ngModel
+                disabled
+            />
+            <div class="invalid-feedback">
+                <div *ngIf="this.predictionErrors">
+                    <p id="requiredNameFeedback">This value is required.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>
+

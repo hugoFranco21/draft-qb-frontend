@@ -38,7 +38,7 @@ build:
   needs: ['install']
   inherit:
     default: [image]
-  script: npm run build
+  script: npm run build:production
   artifacts:
     expire_in: 1 day
     paths:
