@@ -72,7 +72,8 @@ export class RookieComponent implements OnInit {
         }
       }).then((response)=>{
         if(response?.data?.success){
-          this.prediction = response.data.prediction;
+          const prev = response.data.prediction.toFixed(2);
+          this.prediction = prev;
           this.predictionErrors = undefined;
         } else {
           this.prediction = 0;
