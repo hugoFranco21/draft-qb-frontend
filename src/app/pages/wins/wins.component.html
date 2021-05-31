@@ -129,13 +129,13 @@
                     }"
                 />
                 <div class="invalid-feedback">
-                    <div *ngIf="winsForm.controls.yards.hasError('required')">
+                    <div *ngIf="winsForm.controls.offyard.hasError('required')">
                         <p id="requiredNameFeedback">This value is required</p>
                     </div>
-                    <div *ngIf="winsForm.controls.yards.hasError('min')">
+                    <div *ngIf="winsForm.controls.offyard.hasError('min')">
                         <p id="patternNameFeedback">Lowest possible value is 0.0</p>
                     </div>
-                    <div *ngIf="winsForm.controls.yards.hasError('max')">
+                    <div *ngIf="winsForm.controls.offyard.hasError('max')">
                         <p id="patternNameFeedback">Highest possible value is 100.</p>
                     </div>
                 </div>
