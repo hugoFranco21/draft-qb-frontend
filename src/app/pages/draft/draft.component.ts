@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import axios from 'axios';
 import { environment } from 'src/environments/environment';
@@ -8,17 +8,17 @@ import { environment } from 'src/environments/environment';
   templateUrl: './draft.component.html',
   styleUrls: ['./draft.component.css']
 })
-export class DraftComponent  {
+export class DraftComponent implements OnInit {
   public draftForm: FormGroup = new FormGroup({});
-  public wins: number = 0;
-  public completion: number = 0;
-  public yards: number = 0;
-  public tds: number = 0;
-  public ints: number = 0;
-  public rating: number = 0;
-  public years: number = 0;
-  public age: number = 0;
-  public prediction: number = 0;
+  public wins!: number;
+  public completion!: number;
+  public yards!: number;
+  public tds!: number;
+  public ints!: number;
+  public rating!: number;
+  public years!: number;
+  public age!: number;
+  public prediction!: string;
   public predictionErrors: string | undefined = undefined;
 
   constructor(
@@ -78,27 +78,30 @@ export class DraftComponent  {
   }
 
   public async sendFormData() {
-    await axios({
-      method: 'post',
-      url: environment.BACKEND_URL + '/rookie-production',
-      data: {
-        wins: this.wins,
-        completion: this.completion,
-        yards: this.yards,
-        tds: this.tds,
-        ints: this.ints,
-        rating: this.rating,
-        years: this.years,
-        age: this.age,
-      }
-    }).then((response)=>{
-      if(response?.data?.success){
-        this.prediction = response.data.prediction;
-        this.predictionErrors = undefined;
-      } else {
-        this.prediction = 0;
-        this.predictionErrors = "The input data could not produce a prediction, please check the input"
-      }
-    })
+    this.draftForm.markAllAsTouched();
+    if(this.draftForm.valid){
+      await axios({
+        method: 'post',
+        url: environment.BACKEND_URL + '/rookie-production',
+        data: {
+          wins: this.wins,
+          completion: this.completion,
+          yards: this.yards,
+          tds: this.tds,
+          ints: this.ints,
+          rating: this.rating,
+          years: this.years,
+          age: this.age,
+        }
+      }).then((response)=>{
+        if(response?.data?.success){
+          this.prediction = response.data.prediction;
+          this.predictionErrors = undefined;
+        } else {
+          this.prediction = '';
+          this.predictionErrors = "The input data could not produce a prediction, please check the input"
+        }
+      })
+    }
   }
 }

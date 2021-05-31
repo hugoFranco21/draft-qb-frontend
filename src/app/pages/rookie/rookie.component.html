@@ -46,7 +46,7 @@
                     placeholder="1"
                     min="1"
                     max="7"
-                    ngModel
+                    [(ngModel)]="draft"
                     [ngClass]="{
                         'is-invalid':
                             rookieForm.controls.draft.invalid &&
@@ -83,7 +83,7 @@
                     placeholder="1"
                     min="0"
                     max="100"
-                    ngModel
+                    [(ngModel)]="sack"
                     [ngClass]="{
                         'is-invalid':
                             rookieForm.controls.sack.invalid &&
@@ -119,7 +119,7 @@
                     placeholder="67"
                     min="0"
                     max="100"
-                    ngModel
+                    [(ngModel)]="completion"
                     [ngClass]="{
                         'is-invalid':
                             rookieForm.controls.completion.invalid &&
@@ -154,7 +154,7 @@
                     formControlName="yards"
                     placeholder="8"
                     min="0"
-                    ngModel
+                    [(ngModel)]="yards"
                     [ngClass]="{
                         'is-invalid':
                             rookieForm.controls.yards.invalid &&
@@ -186,7 +186,7 @@
                     formControlName="efficiency"
                     placeholder="150"
                     min="0"
-                    ngModel
+                    [(ngModel)]="efficiency"
                     [ngClass]="{
                         'is-invalid':
                             rookieForm.controls.efficiency.invalid &&
@@ -218,7 +218,7 @@
                 class="form-control bg-light"
                 id="prediction"
                 type="number"
-                ngModel
+                [(ngModel)]="prediction"
                 disabled
             />
             <div class="invalid-feedback">

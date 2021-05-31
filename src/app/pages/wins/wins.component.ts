@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import axios from 'axios';
 import { environment } from 'src/environments/environment';
@@ -8,14 +8,14 @@ import { environment } from 'src/environments/environment';
   templateUrl: './wins.component.html',
   styleUrls: ['./wins.component.css']
 })
-export class WinsComponent {
+export class WinsComponent implements OnInit{
   public winsForm: FormGroup = new FormGroup({});
-  public rating: number = 0;
-  public offplay: number = 0;
-  public offyard: number = 0;
-  public defplay: number = 0;
-  public defyard: number = 0;
-  public turnover: number = 0;
+  public rating!: number;
+  public offplay!: number;
+  public offyard!: number;
+  public defplay!: number;
+  public defyard!: number;
+  public turnover!: number;
   public prediction: number = 0;
   public predictionErrors: string | undefined = undefined;
 
@@ -66,26 +66,29 @@ export class WinsComponent {
   }
 
   public async sendFormData() {
-    await axios({
-      method: 'post',
-      url: environment.BACKEND_URL + '/rookie-production',
-      data: {
-        rating: this.rating,
-        offplay: this.offplay,
-        offyard: this.offyard,
-        defplay: this.defplay,
-        defyard: this.defyard,
-        turnover: this.turnover,
-      }
-    }).then((response)=>{
-      if(response?.data?.success){
-        this.prediction = response.data.prediction;
-        this.predictionErrors = undefined;
-      } else {
-        this.prediction = 0;
-        this.predictionErrors = "The input data could not produce a prediction, please check the input"
-      }
-    })
+    this.winsForm.markAllAsTouched();
+    if(this.winsForm.valid){
+      await axios({
+        method: 'post',
+        url: environment.BACKEND_URL + '/rookie-production',
+        data: {
+          rating: this.rating,
+          offplay: this.offplay,
+          offyard: this.offyard,
+          defplay: this.defplay,
+          defyard: this.defyard,
+          turnover: this.turnover,
+        }
+      }).then((response)=>{
+        if(response?.data?.success){
+          this.prediction = response.data.prediction;
+          this.predictionErrors = undefined;
+        } else {
+          this.prediction = 0;
+          this.predictionErrors = "The input data could not produce a prediction, please check the input"
+        }
+      })
+    }
   }
 
 }

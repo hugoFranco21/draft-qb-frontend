@@ -47,7 +47,7 @@
                     placeholder="80"
                     min="0"
                     max="158.3"
-                    ngModel
+                    [(ngModel)]="rating"
                     [ngClass]="{
                         'is-invalid':
                             winsForm.controls.rating.invalid &&
@@ -84,7 +84,7 @@
                     placeholder="1000"
                     min="0"
                     max="3000"
-                    ngModel
+                    [(ngModel)]="offplay"
                     [ngClass]="{
                         'is-invalid':
                             winsForm.controls.offplay.invalid &&
@@ -111,21 +111,21 @@
         </div>
         <div class="row">
             <div class="col-12 form-group">
-                <label class="form-control-label" for="yards">Offensive yards per play*</label>
+                <label class="form-control-label" for="offyard">Offensive yards per play*</label>
                 <input
                     class="form-control"
-                    id="yards"
+                    id="offyard"
                     type="number"
-                    formControlName="yards"
+                    formControlName="offyard"
                     placeholder="5.5"
                     min="0"
                     max="100"
-                    ngModel
+                    [(ngModel)]="offyard"
                     [ngClass]="{
                         'is-invalid':
-                            winsForm.controls.yards.invalid &&
-                            (winsForm.controls.yards.dirty ||
-                            winsForm.controls.yards.touched)
+                            winsForm.controls.offyard.invalid &&
+                            (winsForm.controls.offyard.dirty ||
+                            winsForm.controls.offyard.touched)
                     }"
                 />
                 <div class="invalid-feedback">
@@ -156,7 +156,7 @@
                     placeholder="1000"
                     min="0"
                     max="3000"
-                    ngModel
+                    [(ngModel)]="defplay"
                     [ngClass]="{
                         'is-invalid':
                             winsForm.controls.defplay.invalid &&
@@ -193,7 +193,7 @@
                     placeholder="5"
                     min="0"
                     max="100"
-                    ngModel
+                    [(ngModel)]="defyard"
                     [ngClass]="{
                         'is-invalid':
                             winsForm.controls.defyard.invalid &&
@@ -229,7 +229,7 @@
                     placeholder="20"
                     min="0"
                     max="100"
-                    ngModel
+                    [(ngModel)]="turnover"
                     [ngClass]="{
                         'is-invalid':
                             winsForm.controls.turnover.invalid &&
@@ -263,7 +263,7 @@
                 class="form-control bg-light"
                 id="prediction"
                 type="number"
-                ngModel
+                [(ngModel)]="prediction"
                 disabled
             />
             <div class="invalid-feedback">
