@@ -71,7 +71,7 @@ export class RookieComponent implements OnInit {
           efficiency: this.efficiency
         }
       }).then((response)=>{
-        if(response?.data?.success){
+        if(response?.data?.success === true){
           const prev = response.data.prediction.toFixed(2);
           this.prediction = prev;
           this.predictionErrors = undefined;

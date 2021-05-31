@@ -80,7 +80,7 @@ export class WinsComponent implements OnInit{
           turnover: this.turnover,
         }
       }).then((response)=>{
-        if(response?.data?.success){
+        if(response?.data?.success === true){
           const prev = response.data.prediction.toFixed(2);
           this.prediction = prev;
           this.predictionErrors = undefined;

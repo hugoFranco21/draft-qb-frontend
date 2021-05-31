@@ -94,7 +94,7 @@ export class DraftComponent implements OnInit {
           age: this.age,
         }
       }).then((response)=>{
-        if(response?.data?.success){
+        if(response?.data?.success === true){
           this.prediction = response.data.prediction;
           this.predictionErrors = undefined;
         } else {
