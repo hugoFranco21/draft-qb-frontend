@@ -341,8 +341,8 @@
                 disabled
             />
             <div class="invalid-feedback">
-                <div *ngIf="this.predictionErrors">
-                    <p id="requiredNameFeedback">{{ this.predictionErrors }}</p>
+                <div *ngIf="this.predictionErrors !== undefined">
+                    <p class="text-danger">{{ this.predictionErrors }}</p>
                 </div>
             </div>
         </div>

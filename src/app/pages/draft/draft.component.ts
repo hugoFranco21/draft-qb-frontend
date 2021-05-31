@@ -82,7 +82,7 @@ export class DraftComponent implements OnInit {
     if(this.draftForm.valid){
       await axios({
         method: 'post',
-        url: environment.BACKEND_URL + '/rookie-production',
+        url: environment.BACKEND_URL + '/should-draft',
         data: {
           wins: this.wins,
           completion: this.completion,

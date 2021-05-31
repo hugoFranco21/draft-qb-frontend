@@ -147,7 +147,7 @@
         </div>
         <div class="row">
             <div class="col-12 form-group">
-                <label class="form-control-label" for="defplay">Number of deffensive plays*</label>
+                <label class="form-control-label" for="defplay">Number of defensive plays*</label>
                 <input
                     class="form-control"
                     id="defplay"
@@ -267,8 +267,8 @@
                 disabled
             />
             <div class="invalid-feedback">
-                <div *ngIf="this.predictionErrors">
-                    <p id="requiredNameFeedback">This value is required.</p>
+                <div *ngIf="this.predictionErrors !== undefined">
+                    <p class="text-danger">The number of wins could not be calculated with the input data.</p>
                 </div>
             </div>
         </div>

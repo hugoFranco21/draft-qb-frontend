@@ -70,7 +70,7 @@ export class WinsComponent implements OnInit{
     if(this.winsForm.valid){
       await axios({
         method: 'post',
-        url: environment.BACKEND_URL + '/rookie-production',
+        url: environment.BACKEND_URL + '/wins-expected',
         data: {
           rating: this.rating,
           offplay: this.offplay,
@@ -81,7 +81,8 @@ export class WinsComponent implements OnInit{
         }
       }).then((response)=>{
         if(response?.data?.success){
-          this.prediction = response.data.prediction;
+          const prev = response.data.prediction.toFixed(2);
+          this.prediction = prev;
           this.predictionErrors = undefined;
         } else {
           this.prediction = 0;
