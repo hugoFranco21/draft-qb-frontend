@@ -18,6 +18,7 @@ export class RookieComponent implements OnInit {
   public prediction!: number;
   public predictionErrors: string | undefined = undefined;
   public error: boolean = false;
+  public isValid:boolean = true;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -50,6 +51,7 @@ export class RookieComponent implements OnInit {
       yards: new FormControl(this.yards, [
         Validators.required,
         Validators.min(0),
+        Validators.max(100),
       ]),
       efficiency: new FormControl(this.efficiency, [
         Validators.required,
@@ -61,6 +63,7 @@ export class RookieComponent implements OnInit {
   public async sendFormData() {
     this.rookieForm.markAllAsTouched();
     if(this.rookieForm.valid){
+      this.isValid = true;
       await axios({
         method: 'post',
         url: environment.BACKEND_URL + '/rookie-production',
@@ -74,7 +77,7 @@ export class RookieComponent implements OnInit {
       }).then((response)=>{
         if(response?.data?.success === true){
           const prev = response.data.prediction.toFixed(2);
-          this.prediction = prev;
+          this.prediction = prev < 158.3 ? prev : 158.3;
           this.predictionErrors = undefined;
           this.error = false;
         } else {
@@ -83,6 +86,8 @@ export class RookieComponent implements OnInit {
           this.predictionErrors = "The input data could not produce a prediction, please check the input."
         }
       })
+    } else {
+      this.isValid = false;
     }
   }
 

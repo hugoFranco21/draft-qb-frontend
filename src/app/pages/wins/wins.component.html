@@ -255,6 +255,11 @@
             </div>
         </div>
         <button type="button" (click)="sendFormData()">Get prediction</button>
+        <div *ngIf="!isValid">
+            <p class="text-danger">
+                There are errors in the form.
+            </p>
+        </div>
     </form>
     <div class="row">
         <div class="col-12">

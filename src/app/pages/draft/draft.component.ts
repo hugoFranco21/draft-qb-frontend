@@ -21,6 +21,7 @@ export class DraftComponent implements OnInit {
   public prediction!: string;
   public predictionErrors: string | undefined = undefined;
   public error:boolean = false;
+  public isValid: boolean = true;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -81,6 +82,7 @@ export class DraftComponent implements OnInit {
   public async sendFormData() {
     this.draftForm.markAllAsTouched();
     if(this.draftForm.valid){
+      this.isValid = true;
       await axios({
         method: 'post',
         url: environment.BACKEND_URL + '/should-draft',
@@ -105,6 +107,8 @@ export class DraftComponent implements OnInit {
           this.predictionErrors = "The input data could not produce a prediction, please check the input."
         }
       })
+    } else {
+      this.isValid = false;
     }
   }
 }

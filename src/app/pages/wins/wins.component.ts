@@ -19,6 +19,7 @@ export class WinsComponent implements OnInit{
   public prediction: number = 0;
   public predictionErrors: string | undefined = undefined;
   public error:boolean = false;
+  public isValid:boolean = true;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -69,6 +70,7 @@ export class WinsComponent implements OnInit{
   public async sendFormData() {
     this.winsForm.markAllAsTouched();
     if(this.winsForm.valid){
+      this.isValid = true;
       await axios({
         method: 'post',
         url: environment.BACKEND_URL + '/wins-expected',
@@ -83,7 +85,7 @@ export class WinsComponent implements OnInit{
       }).then((response)=>{
         if(response?.data?.success === true){
           const prev = response.data.prediction.toFixed(2);
-          this.prediction = prev;
+          this.prediction = prev < 16 ? prev : 16;
           this.predictionErrors = undefined;
           this.error = false;
         } else {
@@ -93,6 +95,8 @@ export class WinsComponent implements OnInit{
           this.predictionErrors = "The input data could not produce a prediction, please check the input."
         }
       })
+    } else {
+      this.isValid = false;
     }
   }
 
