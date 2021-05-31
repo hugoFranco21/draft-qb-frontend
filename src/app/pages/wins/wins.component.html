@@ -268,7 +268,7 @@
             />
             <div class="invalid-feedback">
                 <div *ngIf="this.predictionErrors !== undefined">
-                    <p class="text-danger">The number of wins could not be calculated with the input data.</p>
+                    <p class="text-danger">{{ predictionErrors}}</p>
                 </div>
             </div>
         </div>
